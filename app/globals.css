@@ -1,66 +1,114 @@
-/* global.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Styles */
+:root {
+  --gold: #c9972c;
+  --gold-light: #f0d080;
+  --rose-deep: #be2d3a;
+  --rose-soft: #f9eaea;
+  --cream: #fdf8f3;
+  --warm-gray: #6b5b4e;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #fff;
-  color: #333;
-  line-height: 1.6;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--cream);
+  color: #2d1f1f;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Optional: Styling for h1, h2, h3, etc. */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif;
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-/* General Link Styling */
 a {
   text-decoration: none;
   color: inherit;
-  transition: color 0.3s ease;
+  transition: color 0.25s ease;
 }
 
-a:hover, a:focus {
-  color:#c4261a; /* Orange color on hover */
-}
-
-/* Utility classes for easy flexbox centering */
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Scrollbar custom styling */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
+/* Premium scrollbar */
+::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-thumb {
-  background-color: #c4261a;
-  border-radius: 8px;
+  background: linear-gradient(to bottom, #be2d3a, #c9972c);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track { background: #fdf8f3; }
+
+/* Ribbon / badge shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }
 
-::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+.shimmer-gold {
+  background: linear-gradient(90deg, #c9972c 0%, #f0d080 50%, #c9972c 100%);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Button styling */
-button {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  transition: all 0.3s ease;
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+.float-anim { animation: float 4s ease-in-out infinite; }
+
+/* Gift ribbon */
+.gift-ribbon {
+  position: relative;
+  overflow: hidden;
+}
+.gift-ribbon::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(201,151,44,0.08) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-button:hover,
-button:focus {
-  opacity: 0.9;
-  transform: translateY(-2px);
+/* Warm card */
+.card-warm {
+  background: #fff;
+  border: 1px solid rgba(201,151,44,0.12);
+  box-shadow: 0 2px 20px rgba(190,45,58,0.06), 0 1px 4px rgba(0,0,0,0.04);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
+.card-warm:hover {
+  box-shadow: 0 12px 40px rgba(190,45,58,0.12), 0 4px 12px rgba(0,0,0,0.08);
+  transform: translateY(-3px);
+}
+
+/* Divider ornament */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #c9972c;
+  font-size: 18px;
+}
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9972c44, transparent);
+}
+
+button { cursor: pointer; transition: all 0.25s ease; }
